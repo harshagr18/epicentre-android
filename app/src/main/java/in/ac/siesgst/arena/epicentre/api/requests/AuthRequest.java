@@ -42,8 +42,7 @@ public class AuthRequest {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.v(LOG_TAG, response.toString());
-                        if (response.optInt("status") == 200 &&
-                                response.optInt("code") == 200) {
+                        if (response.optString("status").equals("OK")) {
                             JSONObject dataObject = response.optJSONObject("data");
                             String token = dataObject.optString("token");
                             // Insert into database

@@ -44,8 +44,7 @@ public class TravisRequest {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        if (response.optInt("status") == 200 &&
-                                response.optInt("code") == 200) {
+                        if (response.optString("status").equals("OK")) {
                             JSONObject dataObject = response.optJSONObject("data");
                             String number = dataObject.optString("number");
                             String state = dataObject.optString("state");
@@ -93,8 +92,7 @@ public class TravisRequest {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        if (response.optInt("status") == 200 &&
-                                response.optInt("code") == 200) {
+                        if (response.optString("status").equals("OK")) {
                             JSONArray dataArray = response.optJSONArray("data");
                             List<Travis> travisList = new ArrayList<Travis>();
                             try {

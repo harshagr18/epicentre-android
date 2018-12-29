@@ -40,8 +40,7 @@ public class HerokuRequest {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        if (response.optInt("status") == 200 &&
-                                response.optInt("code") == 200) {
+                        if (response.optString("status").equals("OK")) {
                             JSONObject dataObject = response.optJSONObject("data");
                             JSONObject infoObject = dataObject.optJSONObject("info");
                             JSONObject dynoObject = dataObject.optJSONObject("dyno");
@@ -117,8 +116,7 @@ public class HerokuRequest {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        if (response.optInt("status") == 200 &&
-                                response.optInt("code") == 200) {
+                        if (response.optString("status").equals("OK")) {
                             herokuViewModel.updateMaintenance(Boolean.parseBoolean(finalValue));
                             Toast.makeText(context, response.optString("message"), Toast.LENGTH_LONG).show();
                         } else {
@@ -160,8 +158,7 @@ public class HerokuRequest {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        if (response.optString("status").equals("OK") &&
-                                response.optInt("code") == 200) {
+                        if (response.optString("status").equals("OK")) {
                             // TODO: Refresh Fragment with new data showing latest configs
                             Toast.makeText(context, response.optString("message"), Toast.LENGTH_LONG).show();
                         } else {
